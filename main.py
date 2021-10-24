@@ -78,12 +78,11 @@ def solve_OrTools(dima):
 
     return u, model, status
 
-
 def print_solution(u):
     num_nodes = len(u)
     all_nodes = range(0, num_nodes)
-    for i in range(0, all_nodes):
-        log.info('u(' + str(i) + ')=' + str(u[i].solution_value))
+    for i in all_nodes:
+        log.info('u(' + str(i) + ')=' + str(int(u[i].solution_value())))
 
 def main():
     # configure logger for info level
@@ -94,11 +93,11 @@ def main():
         stream=sys.stdout)
 
     # load tsp instance
-    tsp_problem = 'dj38.tsp'
+    tsp_problem = 'dj10.tsp'
 
     log.info("Reading TSP problem Instance " + tsp_problem)
     tsp = pd.read_csv('./TSP_Instances/' + tsp_problem, sep=' ', skiprows=10, dtype = float,
-                      names=['nodeId', 'lat', 'lng'], skipfooter=1, engine='python')
+                      names=['nodeId', 'lat', 'lng'], skipfooter=0, engine='python')
     tsp = tsp.sort_values(by='nodeId', inplace=False)
 
     A = tsp[['lat', 'lng']].to_numpy()
