@@ -26,7 +26,7 @@ def solve_OrTools(dima):
     all_but_first_nodes = range(1, num_nodes)
 
     # Create the model.
-    solver_name = 'GUROBI_MIP'
+    solver_name = 'SCIP'
     log.info('Instantiating solver ' + solver_name)
     model = pywraplp.Solver.CreateSolver(solver_name)
     model.EnableOutput()
